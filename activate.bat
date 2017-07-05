@@ -1,0 +1,1 @@
+C:\Users\danie\virtualenvs\applicant_env\Scripts\activate

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+{% load static from staticfiles %}
+{% block content %}
+
+        <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | as_bootstrap}}
+                <button class="btn btn-default" onclick="location.href='{% url 'candidate_detail' candidate.id %}'">Back</button>
+                <button type="submit" class="btn btn-info">Save</button>
+        </form>
+
+{% endblock content %}

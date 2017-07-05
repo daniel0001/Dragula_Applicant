@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-2 col-sm-3 text-center">
+            {% if candidate.image %}
+                <a class="candidate-img" href="#">
+                    <img src="{{ MEDIA_URL }}{{ candidate.image}}"
+                        style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
+                </a>
+            {% endif %}
+        </div>
+        <div class="col-md-10 col-sm-9">
+            <h3>{{ candidate }}</h3>
+            <div class="row">
+                <div class="col-xs-9">
+                    <h4>Description</h4>
+                    <hr>
+                    <p>{{ candidate.description }}</p>
+                    <hr>
+                    <h4>Contact Details:</h4>
+                    <hr>
+                    <p>Email: {{ candidate.email }}</p>
+                    <p>Phone: {{ candidate.phone }}</p>
+                    <p>Created Date: {{ candidate.created_date }}</p>
+                    
+                    {% if candidate.deactivated_date != null %}
+                    <p>Deactivated Date: {{ candidate.deactivated_date }}</p>
+                    {% endif %}
+
+                    {% comment %}<button class="btn btn-default" onclick="location.href='{% url 'applicant_tracker' %}'">Back To Applicant Tracker</button>{% endcomment %}
+                    <button class="btn btn-default" onclick="location.href='{% url 'edit_candidate' candidate.id %}'">Edit</button>
+                    
+                    {% if candidate.deactivated_date == null %}
+                    <button class="btn btn-default" onclick="location.href='{% url 'deactivate_candidate' candidate.id %}'">Deactivate</button>
+                    {% else %}
+                    <button class="btn btn-default" onclick="location.href='{% url 'activate_candidate' candidate.id %}'">Activate</button>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
