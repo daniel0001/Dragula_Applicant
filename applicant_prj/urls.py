@@ -17,13 +17,14 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.static import serve
 from candidate import urls as candidate_urls
-from home import urls as home_urls
+from home.views import hello_world
 from django.views import static
 from .settings import MEDIA_ROOT
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', include(home_urls)),
+    url(r'^$', hello_world),
     url(r'^candidate/', include(candidate_urls)),
-    url(r'^media/images/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
+    url(r'^tracker/', include(candidate_urls)),
+    url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
 ]

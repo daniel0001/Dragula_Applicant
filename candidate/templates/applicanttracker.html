@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block content %}
+
+<div class="container-fluid">
+        <div class="row">
+            {% comment %}<div class="col-sm-1">
+            </div>{% endcomment %}
+            <div class="col-sm-2">
+                <div id='stage1' class='container dragCol'>
+                    {% for candidate in candidateList %}
+                        {% if candidate.interview_stage == 0 %}
+                        <div class="cand-wrapper">
+                            <a class="candidate-img" href="#">
+                                <img src="{{ MEDIA_URL }}{{ candidate.image}}"
+                        style="width:70px; height: 70px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
+                            </a>
+                            <h5>{{ candidate }}</h5>
+                            <p>{{ candidate.description }}</p>
+                            <input placeholder='Comments...'/></div>
+                        
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            <div class="col-sm-2">
+                <div id='stage2' class='container dragCol'>
+                    {% for candidate in candidateList %}
+                        {% if candidate.interview_stage == 1 %}
+                        <div class="cand-wrapper" id="{{ candidate.id }}">
+                            <a class="candidate-img" href="#">
+                                <img src="{{ MEDIA_URL }}{{ candidate.image}}"
+                        style="width:70px; height: 70px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
+                            </a>
+                            <h5>{{ candidate }}</h5>
+                            <p>{{ candidate.description }}</p>
+                            <input placeholder='Comments...'/></div>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            <div class="col-sm-2">
+                <div id='stage3' class='container dragCol'>
+                   {% for candidate in candidateList %}
+                        {% if candidate.interview_stage == 2 %}
+                        <div class="cand-wrapper">
+                            <a class="candidate-img" href="#">
+                                <img src="{{ MEDIA_URL }}{{ candidate.image}}"
+                        style="width:70px; height: 70px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
+                            </a>
+                            <h5>{{ candidate }}</h5>
+                            <p>{{ candidate.description }}</p>
+                            <input placeholder='Comments...'/></div>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            <div class="col-sm-2">
+                <div id='stage4' class='container dragCol'>
+                    {% for candidate in candidateList %}
+                        {% if candidate.interview_stage == 3 %}
+                        <div class="cand-wrapper">
+                            <a class="candidate-img" href="#">
+                                <img src="{{ MEDIA_URL }}{{ candidate.image}}"
+                        style="width:70px; height: 70px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
+                            </a>
+                            <h5>{{ candidate }}</h5>
+                            <p>{{ candidate.description }}</p>
+                            <input placeholder='Comments...'/></div>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            <div class="col-sm-2">
+                <div id='stage5' class='container dragCol'>
+                   {% for candidate in candidateList %}
+                        {% if candidate.interview_stage == 4 %}
+                        <div class="cand-wrapper">
+                            <a class="candidate-img" href="#">
+                                <img src="{{ MEDIA_URL }}{{ candidate.image}}"
+                        style="width:70px; height: 70px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
+                            </a>
+                            <h5>{{ candidate }}</h5>
+                            <p>{{ candidate.description }}</p>
+                            <input placeholder='Comments...'/></div>                        
+                        {% endif %}
+                    {% endfor %}
+                     </div>
+                </div>
+            </div>
+    </div>
+
+
+     
+{% endblock content %}

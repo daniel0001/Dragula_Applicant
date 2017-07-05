@@ -4,7 +4,12 @@ from django.utils import timezone
 from .models import Candidate
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+
+
+def applicant_tracker(request):
+    candidateList = Candidate.objects.filter(deactivated_date=None)
+    return render(request, 'applicanttracker.html', {'candidateList' : candidateList } )
+
 def add_candidate(request):
     if request.method =='POST':
         form = NewCandidateForm(request.POST, request.FILES)
@@ -17,7 +22,6 @@ def add_candidate(request):
     else:
         form = NewCandidateForm()
     return render(request, 'candidateform.html', {'form': form})
-
 
 def candidate_detail(request, id):
     """
@@ -32,12 +36,14 @@ def candidate_detail(request, id):
 
 def deactivate_candidate(request, id):
     candidate = get_object_or_404(Candidate, pk=id)
-    candidate.deactivate
+    candidate.deactivated_date = timezone.now()
+    candidate.save()
     return render(request, "candidatedetail.html", {'candidate': candidate})
 
 def activate_candidate(request, id):
     candidate = get_object_or_404(Candidate, pk=id)
-    candidate.activate
+    candidate.deactivated_date = None
+    candidate.save()
     return render(request, "candidatedetail.html", {'candidate': candidate})
 
 

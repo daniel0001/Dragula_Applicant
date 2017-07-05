@@ -14,20 +14,20 @@ class Candidate(models.Model):
     description = models.TextField()
     email = models.EmailField(max_length=150)
     phone = models.IntegerField()
-    image = models.ImageField(upload_to='media', blank=True, null=True)
+    image = models.ImageField(upload_to='images', blank=True, null=True)
     cv = models.FileField(upload_to='cvDocs', blank=True, null=True )
     created_date = models.DateTimeField(auto_now_add=True)
     deactivated_date = models.DateTimeField(blank=True, null=True)
     interview_stage = models.IntegerField( null=False, blank=False)
 
-    def deactivate(self):
-        self.deactivated_date = timezone.now()
-        self.save()
+    # def deactivate(self):
+    #     self.deactivated_date = timezone.now()
+    #     self.save()
     
     #Candidate is active if deactivated date is null
-    def activate(self):
-        self.deactivated_date = null
-        self.save()
+    # def activate(self):
+    #     self.deactivated_date = null
+    #     self.save()
 
     def __str__(self):
         name = "{0} {1}".format(self.first_name, self.last_name)
